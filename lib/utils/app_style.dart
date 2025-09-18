@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app_route/utils/app_color.dart';
 
-
 class AppStyle {
   static final TextStyle black24meduim = GoogleFonts.inter(
     color: AppColor.blackColor,
