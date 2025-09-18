@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_route/ui/home/category_details/category_details.dart';
+import 'package:news_app_route/ui/home/widget/home_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,9 @@ class HomeScreen extends StatelessWidget {
           'home',
           style: Theme.of(context).textTheme.labelLarge,
         ),
+        
       ),
+      drawer: HomeDrawer(),
       body: CategoryDetails(),
     );
   }
