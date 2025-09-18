@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_route/api/api_manager.dart';
+import 'package:news_app_route/model/category_model.dart';
 import 'package:news_app_route/model/sourceresponse/sourceresponse.dart';
 import 'package:news_app_route/ui/home/category_details/sources/sources_taps.dart';
 import 'package:news_app_route/utils/app_color.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
-
+  CategoryDetails({super.key, required this.categoryModel});
+  CategoryModel categoryModel;
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
 }
@@ -15,7 +16,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Sourceresponse?>(
-      future: ApiManager.getsources(),
+      future: ApiManager.getsources(categoryId: widget.categoryModel.id),
       builder: (context, snapshot) {
         // waiting
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -36,7 +37,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      ApiManager.getsources();
+                      ApiManager.getsources(
+                          categoryId: widget.categoryModel.id);
                     });
                   },
                   child: const Text('try again'))
@@ -54,7 +56,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      ApiManager.getsources();
+                      ApiManager.getsources(
+                          categoryId: widget.categoryModel.id);
                     });
                   },
                   child: const Text('try again'))
