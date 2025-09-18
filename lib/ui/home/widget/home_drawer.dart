@@ -7,11 +7,8 @@ import 'package:news_app_route/utils/app_style.dart';
 typedef Ongotohomeclick = void Function();
 
 class HomeDrawer extends StatelessWidget {
-  HomeDrawer({
-    super.key,
-    // required this.ongotohomeclick
-  });
-  // Ongotohomeclick ongotohomeclick;
+  HomeDrawer({super.key, required this.ongotohomeclick});
+  Ongotohomeclick ongotohomeclick;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,7 +44,7 @@ class HomeDrawer extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           // Go to home
-                          //  ongotohomeclick();
+                          ongotohomeclick();
                         },
                         child: Text(
                           'GO To Home',
