@@ -41,7 +41,7 @@ class _SourcesTapsState extends State<SourcesTaps> {
                     );
                   },
                 ).toList())),
-        SizedBox(height: size.height * .04),
+        SizedBox(height: size.height * .03),
         Expanded(child: NewsWidget(source: widget.sources[selectedindex]))
       ],
     );
