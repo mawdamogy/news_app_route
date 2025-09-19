@@ -18,32 +18,38 @@ class _SourcesTapsState extends State<SourcesTaps> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        DefaultTabController(
-            initialIndex: selectedindex,
-            length: widget.sources.length,
-            child: TabBar(
-                onTap: (index) {
-                  setState(() {
-                    selectedindex = index;
-                  });
+    return DefaultTabController(
+      length: widget.sources.length,
+      child: Column(
+        children: [
+          TabBar(
+              isScrollable: true,
+              indicatorColor: Theme.of(context).focusColor,
+              tabAlignment: TabAlignment.start,
+              dividerColor: AppColor.transparentColor,
+              tabs: widget.sources.map(
+                (e) {
+                  return SourcesItem(
+                    sourceName: e.name ?? '',
+                    tabIndex: widget.sources.indexOf(e),
+                    //    selectedindex == widget.sources.indexOf(e),
+                  );
                 },
-                isScrollable: true,
-                indicatorColor: Theme.of(context).focusColor,
-                tabAlignment: TabAlignment.start,
-                dividerColor: AppColor.transparentColor,
-                tabs: widget.sources.map(
-                  (e) {
-                    return SourcesItem(
-                      sourceName: e.name ?? '',
-                      isselected: selectedindex == widget.sources.indexOf(e),
-                    );
-                  },
-                ).toList())),
-        SizedBox(height: size.height * .03),
-        Expanded(child: NewsWidget(source: widget.sources[selectedindex]))
-      ],
+              ).toList()),
+          SizedBox(height: size.height * .03),
+          Expanded(
+              child: TabBarView(
+            children: widget.sources.map(
+              (e) {
+                return NewsWidget(source: e);
+              },
+            ).toList(),
+          )
+              //   NewsWidget(source: widget.sources[selectedindex]
+              //  )
+              )
+        ],
+      ),
     );
   }
 }
