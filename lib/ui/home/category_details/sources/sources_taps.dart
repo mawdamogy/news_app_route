@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_route/di/di.dart';
 import 'package:news_app_route/model/sourceresponse/source.dart';
 import 'package:news_app_route/ui/home/category_details/cubit/sources_view_model.dart';
 import 'package:news_app_route/ui/home/category_details/news/news_widget.dart';
@@ -14,7 +15,8 @@ class SourcesTaps extends StatefulWidget {
 }
 
 class _SourcesTapsState extends State<SourcesTaps> {
-  SourcesViewModel viewModel = SourcesViewModel();
+  SourcesViewModel viewModel =
+      SourcesViewModel(sourcesRepositry: injectSourcesRepositry());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
