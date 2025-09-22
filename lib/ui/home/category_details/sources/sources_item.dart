@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class SourcesItem extends StatelessWidget {
   SourcesItem({super.key, required this.sourceName,
   // required this.isselected,
-  required this.tabIndex});
+  required this.tabIndex
+  });
   String sourceName;
-  ///bool isselected;
+//bool isselected;
   int tabIndex;
   @override
   Widget build(BuildContext context) {

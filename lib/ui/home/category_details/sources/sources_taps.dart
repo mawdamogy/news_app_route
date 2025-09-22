@@ -13,13 +13,14 @@ class SourcesTaps extends StatefulWidget {
 }
 
 class _SourcesTapsState extends State<SourcesTaps> {
-  int selectedindex = 0;
+// int selectedindex = 0;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return DefaultTabController(
       length: widget.sources.length,
+      // initialIndex: selectedindex,
       child: Column(
         children: [
           TabBar(
@@ -31,8 +32,9 @@ class _SourcesTapsState extends State<SourcesTaps> {
                 (e) {
                   return SourcesItem(
                     sourceName: e.name ?? '',
+                    //  isselected: selectedindex == widget.sources.indexOf(e)
                     tabIndex: widget.sources.indexOf(e),
-                    //    selectedindex == widget.sources.indexOf(e),
+                    //  selectedindex == widget.sources.indexOf(e),
                   );
                 },
               ).toList()),
@@ -44,12 +46,13 @@ class _SourcesTapsState extends State<SourcesTaps> {
                 return NewsWidget(source: e);
               },
             ).toList(),
-          )
-              //   NewsWidget(source: widget.sources[selectedindex]
-              //  )
-              )
+          ))
         ],
       ),
     );
   }
 }
+/* 
+
+          */
+ 
