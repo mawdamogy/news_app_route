@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app_route/di/di.dart';
 import 'package:news_app_route/model/sourceresponse/source.dart';
 import 'package:news_app_route/ui/home/category_details/news/cubit/news_statues.dart';
 import 'package:news_app_route/ui/home/category_details/news/cubit/news_view_model.dart';
@@ -15,7 +16,7 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
-  NewsViewModel viewModel = NewsViewModel();
+  NewsViewModel viewModel = NewsViewModel(newsRepositry: injectNewsRepositry());
   @override
   void initState() {
     viewModel.getNewsbysourceid(widget.source.id!);

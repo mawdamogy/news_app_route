@@ -1,16 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app_route/api/api_manager.dart';
+import 'package:news_app_route/data/Repositry/Sources/repositry/sources_repositry.dart';
 import 'package:news_app_route/ui/home/category_details/cubit/sources_states.dart';
 
 class SourcesViewModel extends Cubit<SourcesStates> {
-  SourcesViewModel() : super(SourcesLoadingStates());
+  SourcesRepositry sourcesRepositry;
+  SourcesViewModel({required this.sourcesRepositry})
+      : super(SourcesLoadingStates());
 // hold data
 // handel logic
   int selectedindex = 0;
   void getSources(String categoryId) async {
     emit(SourcesLoadingStates());
     try {
-      var response = await ApiManager.getsources(categoryId: categoryId);
+      var response = await sourcesRepositry.getSources(categoryId);
       if (response?.status == 'error') {
         // to da : response error
         emit(SourcesErrorStates(errorMessage: response!.message!));
