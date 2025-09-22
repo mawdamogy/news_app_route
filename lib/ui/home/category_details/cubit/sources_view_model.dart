@@ -6,6 +6,7 @@ class SourcesViewModel extends Cubit<SourcesStates> {
   SourcesViewModel() : super(SourcesLoadingStates());
 // hold data
 // handel logic
+  int selectedindex = 0;
   void getSources(String categoryId) async {
     emit(SourcesLoadingStates());
     try {
@@ -20,5 +21,10 @@ class SourcesViewModel extends Cubit<SourcesStates> {
     } catch (e) {
       emit(SourcesErrorStates(errorMessage: e.toString()));
     }
+  }
+
+  void changeSelectedIndex(int newindex) {
+    selectedindex = newindex;
+    emit(ChangeIndexStates());
   }
 }

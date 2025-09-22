@@ -13,3 +13,7 @@ class SourcesErrorStates extends SourcesStates {
   String errorMessage;
   SourcesErrorStates({required this.errorMessage});
 }
+
+class ChangeIndexStates extends SourcesStates {
+  ChangeIndexStates();
+}
