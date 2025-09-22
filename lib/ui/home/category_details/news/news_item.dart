@@ -1,9 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_route/model/newsresponse/article.dart';
-
-
 import 'package:news_app_route/utils/app_style.dart';
-
 class NewsItem extends StatelessWidget {
   NewsItem({super.key, required this.news});
   Article news;
@@ -30,12 +28,23 @@ class NewsItem extends StatelessWidget {
             width: double.infinity,
             height: size.height * .3,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: DecorationImage(
-                    image: NetworkImage(
-                      news.urlToImage ?? '',
-                    ),
-                    fit: BoxFit.fill)),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: CachedNetworkImage(
+                imageUrl: news.urlToImage ?? '',
+                fit: BoxFit.fill,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.broken_image,
+                  size: 50,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
           ),
           SizedBox(
             height: size.height * .01,
